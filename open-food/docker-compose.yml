@@ -1,0 +1,35 @@
+services:
+  api.openfood.app:
+    container_name: open_food_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    env_file:
+      - .env
+    depends_on:
+      - api.openfood.db
+    command: >
+      sh -c "composer install &&
+             php artisan migrate --force &&
+             apache2-foreground
+             chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+             chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+             php artisan config:cache"
+
+  api.openfood.db:
+    container_name: open_food_db
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
