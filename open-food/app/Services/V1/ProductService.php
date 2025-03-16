@@ -3,6 +3,7 @@
 namespace App\Services\V1;
 
 use App\Models\Product;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductService
 {
@@ -22,12 +23,23 @@ class ProductService
      * Method to list products with pagination.
      *
      * @param array $requestData
-     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    public function listProducts(array $requestData)
+    public function listProducts(array $requestData): LengthAwarePaginator
     {
         $perPage = $requestData['per_page'] ?? 15;
 
         return $this->product::paginate($perPage);
+    }
+
+    /**
+     * Method to get product by code.
+     *
+     * @param string $code
+     * @return Product|null
+     */
+    public function getProductByCode(string $code): ?Product
+    {
+        return $this->product::where('code', $code)->firstOrFail();
     }
 }

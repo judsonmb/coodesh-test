@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use App\Services\V1\ProductService;
 use App\Http\Requests\V1\ProductIndexRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -31,5 +32,18 @@ class ProductController extends Controller
         $products = $this->productService->listProducts($validatedData);
 
         return response()->json($products);
+    }
+
+    /**
+     * Display the specified product by code.
+     *
+     * @param string $code
+     * @return JsonResponse
+     */
+    public function show(Request $request, string $code)
+    {
+        $product = $this->productService->getProductByCode($code);
+
+        return response()->json($product);
     }
 }
