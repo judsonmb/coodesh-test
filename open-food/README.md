@@ -11,6 +11,7 @@ This project is a REST API designed to utilize data from the Open Food Facts pro
 - PHP 8.2;
 - Docker;
 - Docker compose;
+- Make (if you want to run make commands, or you can choose use docker commands);
 
 ## Installing
 
