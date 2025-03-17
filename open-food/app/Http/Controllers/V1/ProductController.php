@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use App\Enums\ProductStatus;
 use App\Services\V1\ProductService;
 use App\Http\Requests\V1\ProductIndexRequest;
 use App\Http\Requests\V1\ProductUpdateRequest;
@@ -65,5 +66,20 @@ class ProductController extends Controller
             'message' => 'Product updated successfully.',
             'data' => $product,
         ], 202);
+    }
+
+    /**
+     * Delete the product by code (change its status to trash).
+     *
+     * @param string $code
+     * @return void
+     */
+    public function destroy(Request $request, string $code)
+    {
+        $this->productService->updateProduct(
+            $code, ['status' => ProductStatus::Trash->value]
+        );
+
+        return response()->json([], 204);
     }
 }
