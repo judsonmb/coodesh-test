@@ -12,7 +12,9 @@ class ProductController extends Controller
 {
     protected $productService;
 
-    /**
+     /**
+     * Inject the ProductService into the controller.
+     *
      * @param ProductService $productService
      */
     public function __construct(ProductService $productService)
