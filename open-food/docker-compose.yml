@@ -14,6 +14,7 @@ services:
       - api.openfood.db
     command: >
       sh -c "composer install &&
+             php artisan key:generate &&
              php artisan migrate --force &&
              apache2-foreground
              chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
