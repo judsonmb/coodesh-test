@@ -3,13 +3,10 @@
 namespace Tests\Feature\V1\Product;
 
 use App\Models\Product;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ProductIndexTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Test the /products endpoint.
      *

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use App\Services\V1\ProductService;
 use App\Http\Requests\V1\ProductIndexRequest;
+use App\Http\Requests\V1\ProductUpdateRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -45,5 +46,24 @@ class ProductController extends Controller
         $product = $this->productService->getProductByCode($code);
 
         return response()->json($product);
+    }
+
+    /**
+     * Update the specified product by code.
+     *
+     * @param  ProductUpdateRequest  $request
+     * @param  string  $code
+     * @return JsonResponse
+     */
+    public function update(ProductUpdateRequest $request, string $code)
+    {
+        $validatedData = $request->validated();
+
+        $product = $this->productService->updateProduct($code, $validatedData);
+
+        return response()->json([
+            'message' => 'Product updated successfully.',
+            'data' => $product,
+        ], 202);
     }
 }

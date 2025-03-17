@@ -42,4 +42,21 @@ class ProductService
     {
         return $this->product::where('code', $code)->firstOrFail();
     }
+
+    /**
+     * Update the product by code.
+     *
+     * @param string $code
+     * @param array $data
+     * @return Product|null
+     * @throws ModelNotFoundException
+     */
+    public function updateProduct(string $code, array $data): ?Product
+    {
+        $product = $this->product::where('code', $code)->firstOrFail();
+
+        $product->update($data);
+
+        return $product;
+    }
 }
