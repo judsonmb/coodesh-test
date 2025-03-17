@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('product_name')->nullable();
             $table->string('quantity')->nullable();
             $table->string('brands')->nullable();
-            $table->string('categories')->nullable();
+            $table->text('categories')->nullable();
             $table->string('labels')->nullable();
             $table->string('cities')->nullable();
-            $table->string('purchase_places')->nullable();
+            $table->text('purchase_places')->nullable();
             $table->string('stores')->nullable();
             $table->text('ingredients_text')->nullable();
             $table->text('traces')->nullable();
