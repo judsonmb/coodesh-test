@@ -4,7 +4,7 @@
 
 This project is a REST API designed to utilize data from the Open Food Facts project, which is an open database containing nutritional information for various food products. The goal of the project is to support the nutritionist team at Fitness Foods LC by providing a quick way to review the nutritional information of food products submitted by users through the mobile application.
 
-- This is a challenge by coodesh.
+- This is a challenge by [coodesh](http://coodesh.com).
 
 ## You need
 
@@ -13,6 +13,8 @@ This project is a REST API designed to utilize data from the Open Food Facts pro
 - Docker compose;
 
 ## Installing
+
+- The repo: https://github.com/judsonmb/coodesh-test/tree/master/open-food
 
 - create the .env file and after update the db password (default root)
 
