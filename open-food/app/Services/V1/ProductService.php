@@ -2,6 +2,7 @@
 
 namespace App\Services\V1;
 
+use App\Enums\ProductStatus;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -58,5 +59,18 @@ class ProductService
         $product->update($data);
 
         return $product;
+    }
+
+    /**
+     * Delete the product by code (change its status to trash).
+     *
+     * @param string $code
+     * @throws ModelNotFoundException
+     */
+    public function deleteProduct(string $code)
+    {
+        $product = $this->product::where('code', $code)->firstOrFail();
+
+        $product->update(['status' => ProductStatus::Trash->value]);
     }
 }
