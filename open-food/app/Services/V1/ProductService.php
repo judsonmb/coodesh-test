@@ -38,6 +38,7 @@ class ProductService
      *
      * @param string $code
      * @return Product|null
+     * @throws ModelNotFoundException
      */
     public function getProductByCode(string $code): ?Product
     {
@@ -67,10 +68,8 @@ class ProductService
      * @param string $code
      * @throws ModelNotFoundException
      */
-    public function deleteProduct(string $code)
+    public function deleteProduct(string $code): void
     {
-        $product = $this->product::where('code', $code)->firstOrFail();
-
-        $product->update(['status' => ProductStatus::Trash->value]);
+        $this->updateProduct($code, ['status' => ProductStatus::Trash->value]);
     }
 }
