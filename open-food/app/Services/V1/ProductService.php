@@ -53,6 +53,7 @@ class ProductService
      * @param array $data
      * @return Product|null
      * @throws ModelNotFoundException
+     * 
      */
     public function updateProduct(string $code, array $data): ?Product
     {
